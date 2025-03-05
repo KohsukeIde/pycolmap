@@ -195,12 +195,12 @@ class SceneManager:
                 if is_camera_description_line:
                     image_id = int(data[0])
                     image = Image(data[-1], int(data[-2]),
-                                  Quaternion(np.array(map(float, data[1:5]))),
-                                  np.array(map(float, data[5:8])))
+                                Quaternion(np.array(list(map(float, data[1:5])))),
+                                np.array(list(map(float, data[5:8]))))
                 else:
                     image.points2D = np.array(
-                        [map(float, data[::3]), map(float, data[1::3])]).T
-                    image.point3D_ids = np.array(map(np.uint64, data[2::3]))
+                        [list(map(float, data[::3])), list(map(float, data[1::3]))]).T
+                    image.point3D_ids = np.array(list(map(np.uint64, data[2::3])))
 
                     # automatically remove points without an associated 3D point
                     #mask = (image.point3D_ids != SceneManager.INVALID_POINT3D)
@@ -211,6 +211,7 @@ class SceneManager:
                     self.name_to_image_id[image.name] = image_id
 
                     self.last_image_id = max(self.last_image_id, image_id)
+
 
     #---------------------------------------------------------------------------
 
