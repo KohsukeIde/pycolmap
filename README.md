@@ -1,4 +1,4 @@
-# pycolmap (aavailable with txt loading)
+# pycolmap (available with txt loading)
 Python interface for COLMAP reconstructions, plus some convenient scripts for
 loading/modifying/converting reconstructions.
 
